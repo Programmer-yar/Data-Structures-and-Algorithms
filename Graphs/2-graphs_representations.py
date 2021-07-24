@@ -52,7 +52,6 @@ class Graph():
         """
 		nodes_value = [node.value for node in self.nodes]
 		adjacency_list = [None] * (max(nodes_value)+1)
-		all_edges = [(edge.node_from.value, edge.node_to.value, edge.value) for edge in graph.edges]
 
 		for edge_object in self.edges:
 			if adjacency_list[edge_object.node_from.value]:
@@ -68,7 +67,13 @@ class Graph():
 		column numbers represent to nodes.
 		Store the edge values in each spot,
 		and a 0 if no edge exists."""
-		pass
+		nodes_value = [node.value for node in self.nodes]
+		max_node = max(nodes_value) + 1
+		adjacency_matrix = [[0]*max_node for i in range(max_node)]
+		for edge_object in self.edges:
+			adjacency_matrix[edge_object.node_from.value][edge_object.node_to.value] = edge_object.value
+			
+		return adjacency_matrix
 
 
 graph = Graph()
@@ -78,5 +83,5 @@ graph.insert_edge(102, 1, 4)
 graph.insert_edge(103, 3, 4)
 
 print(graph.get_edge_list())
-print([(edge.node_from.value, edge.node_to.value, edge.value) for edge in graph.edges])
 print(graph.get_adjacency_list())
+print(graph.get_adjacency_matrix())
