@@ -71,9 +71,3 @@ print(tree.print_tree())
 
 print(tree.search(5))
 print(tree.search(1))
-
-
-
-
-
-
